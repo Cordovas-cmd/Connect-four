@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const displayCurrentPlayer = document.querySelector('#current-player');
     let currentPlayer = 1
 
-    const WinningArrays = [
+    // need to try and figure out a formula for this array.. to check without listing them all ..
+    const winningArrays = [
         [0, 1, 2, 3],
     [41, 40, 39, 38],
     [7, 8, 9, 10],
@@ -76,12 +77,37 @@ document.addEventListener('DOMContentLoaded', () => {
     [13, 20, 27, 34],
     ]
 
+function checkBoard () {
+    for (let w= 0; w < winningArrays.length; w++) {
+        const square1 = squares[winningArrays[w][0]];
+        const square2 = squares[winningArrays[w][1]];
+        const square3 = squares[winningArrays[w][2]];
+        const square4 = squares[winningArrays[w][3]];
 
+
+        if (
+            square1.classList.contains('player-one') &&
+            square2.classList.contains('player-one') &&
+            square3.classList.contains('player-one') &&
+            square4.classList.contains('player-one')
+        ){
+            result.innerHTML = 'Player One Wins!'
+        }
+        if (
+            square1.classList.contains('player-two') &&
+            square2.classList.contains('player-two') &&
+            square3.classList.contains('player-two') &&
+            square4.classList.contains('player-two')
+        ){
+            result.innerHTML = 'Player Two Wins!'
+        }
+    }
+}
 
     for (let i = 0; i < squares.length; i++) {
         squares[i].onclick = () => {
 
-            if (squares[i + 7].classList.contains('taken')) {
+            if (squares[i + 7].classList.contains('taken') &&!squares[i].classList.contains('taken')) {
                 if (currentPlayer == 1) {
                     squares[i].classList.add('taken');
                     squares[i].classList.add('player-one');
@@ -98,7 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
             else {
                 alert("You can't go here")
             }
-
+            
+            checkBoard()
         }
     }
 })
