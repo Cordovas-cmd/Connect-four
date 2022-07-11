@@ -129,3 +129,20 @@ function checkBoard () {
         }
     }
 })
+
+// need to automate win array
+
+// need to create an image for the "board"
+
+// animation and styles for the game pieces
+
+
+// SFX
+
+// music
+
+// score
+
+// possible multiplayer
+
+// win streak.
